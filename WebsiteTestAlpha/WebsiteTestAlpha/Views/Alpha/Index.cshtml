@@ -1,0 +1,48 @@
+﻿@model WebsiteTestAlpha.Models.AlphaModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h1> You have no chance to survive make your time</h1>
+        <h2> You have reloaded the page @Model.CountUp times. </h2>
+
+        <h3>@Model.ExtraMessage</h3>
+        <h3> @Model.UserInput</h3>
+
+    </div>
+    @using (Html.BeginForm("Repeatprocedure", "Alpha", FormMethod.Get))
+    {
+        <div>
+            @Html.Label(" ", "user input number:")
+            @Html.TextBoxFor(s => s.UserInput )
+            @Html.ValidationMessageFor(s => s.UserInput)
+
+        </div>
+
+        <div>
+            @Html.Label("  ", "your input string:")
+            @Html.TextBoxFor(m => m.ExtraMessage)
+        </div>
+
+        <div>
+            @Html.HiddenFor(n => n.CountUp,
+                new { Value = Model.CountUp })
+        </div>
+
+        <div>
+            <button>Reload</button>
+        </div>
+    }
+
+
+</body>
+</html>
